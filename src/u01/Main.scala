@@ -2,22 +2,34 @@ package u01
 
 object Main extends App {
 
+  // Hello World
   println("Hello, Scala")
+  println()
 
-  private val positive1: Int => String = _ match
+  // task 3a
+  private val pos: Int => String = _ match
     case x if x >= 0 => "positive"
     case _ => "negative"
-
-  println(positive1(3))
-  println(positive1(0))
-  println(positive1(-3))
-
-  private def positive2: Int => String = _ match
+  /**
+  private def pos: Int => String = _ match
     case x if x >= 0 => "positive"
     case _ => "negative"
+  */
 
-  println(positive2(3))
-  println(positive2(0))
-  println(positive2(-3))
+  println(pos(3))
+  println(pos(0))
+  println(pos(-3))
+  println()
+
+  // Task 3b
+  private val neg : (String => Boolean) => String => Boolean = f => s => !f(s)
+  //private def neg : (String => Boolean) => (String => Boolean) = f => (s => !f(s))
+
+  private val empty: String => Boolean = _ == ""
+  private val notEmpty = neg(empty)
+  println(notEmpty("foo"))
+  println(notEmpty(""))
+  println(notEmpty("foo") && !notEmpty(""))
+  println()
 
 }
