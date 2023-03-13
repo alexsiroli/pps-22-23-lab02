@@ -1,12 +1,8 @@
 package u01
 
-object Main extends App {
+object Task3 extends App {
 
-  // Hello World
-  println("Hello, Scala")
-  println()
-
-  // task 3a
+  // a)
   private val pos: Int => String = _ match
     case x if x >= 0 => "positive"
     case _ => "negative"
@@ -21,7 +17,7 @@ object Main extends App {
   println(pos(-3))
   println()
 
-  // Task 3b
+  // b)
   private val neg : (String => Boolean) => String => Boolean = f => s => !f(s)
   //private def neg : (String => Boolean) => String => Boolean = f => s => !f(s)
 
@@ -33,7 +29,7 @@ object Main extends App {
   println(notEmpty("foo") && !notEmpty(""))
   println()
 
-  // Task 3c
+  // c)
   private def genericNeg[X] : (X => Boolean) => X => Boolean = f => s => !f(s)
 
   private val positive: Int => Boolean = _ >= 0
