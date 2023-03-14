@@ -8,8 +8,14 @@ object Task4 extends App {
   private def p4(x: Double, y: Double, z: Double) : Boolean = x <= y && y == z
 
   println(p1(2)(4)(4)) // true
-  println(p2(2, 4, 4)) // true
-  println(p3(2)(4)(4)) // true
-  println(p4(2, 4, 4)) // true
+  println(p1(2)(4)(5)) // false
 
+  println(p2(2, 4, 4)) // true
+  println(p2(2, 4, 5)) // false
+
+  println(p3(2)(4)(4)) // true
+  println(p3(2)(4)(5)) // false
+
+  println(p4(2, 4, 4)) // true
+  println(p4(2, 4, 5)) // true
 }
