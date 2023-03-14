@@ -7,37 +7,37 @@ object Task3 extends App {
     case x if x >= 0 => "positive"
     case _ => "negative"
   /**
-  private def pos: Int => String = _ match
+  private def pos(i: Int) : String = i match
     case x if x >= 0 => "positive"
     case _ => "negative"
   */
 
-  println(pos(3))
-  println(pos(0))
-  println(pos(-3))
+  println(pos(3))   // positive
+  println(pos(0))   // positive
+  println(pos(-3))  // negative
   println()
 
   // b)
   private val neg : (String => Boolean) => String => Boolean = f => s => !f(s)
-  //private def neg : (String => Boolean) => String => Boolean = f => s => !f(s)
+  //private def neg(f: String => Boolean) : String => Boolean = s => !f(s)
 
   private val empty: String => Boolean = _ == ""
   private val notEmpty = neg(empty)
 
-  println(notEmpty("foo"))
-  println(notEmpty(""))
-  println(notEmpty("foo") && !notEmpty(""))
+  println(notEmpty("foo"))  // true
+  println(notEmpty(""))     // false
+  println(notEmpty("foo") && !notEmpty(""))   // true
   println()
 
   // c)
-  private def genericNeg[X] : (X => Boolean) => X => Boolean = f => s => !f(s)
+  private def genericNeg[X](f: X => Boolean) : X => Boolean = s => !f(s)
 
   private val positive: Int => Boolean = _ >= 0
   private val negative = genericNeg(positive)
 
-  println(negative(-3))
-  println(negative(3))
-  println(negative(-4) && positive(0))
+  println(negative(-3))   // true
+  println(negative(3))    // false
+  println(negative(-4) && positive(0))  // true
   println()
 
 }
