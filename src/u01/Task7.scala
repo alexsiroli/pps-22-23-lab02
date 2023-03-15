@@ -16,6 +16,12 @@ object Task7 extends App {
    */
   private def between(d: Double, left: Double, right: Double) : Boolean = d >= left && d <= right
 
+  // tests
+  println(between(2, 1, 3))  // true
+  println(between(0, 0, 0))  // true
+  println(between(3, 0, 2))  // false
+  println()
+
   /***
    *Method that checks if a point is inside a rectangle given the lower left and upper right corners.
    *
@@ -26,6 +32,12 @@ object Task7 extends App {
    */
   private def between(p: Point2D, lowerLeft: Point2D, upperRight: Point2D) : Boolean =
     between(p.x, lowerLeft.x, upperRight.x) && between(p.y, lowerLeft.y, upperRight.y)
+
+  // tests
+  println(between(Point2D(1, 2), Point2D(0, 0), Point2D(2, 2))) // true
+  println(between(Point2D(0, 0), Point2D(0, 0), Point2D(0, 0))) // true
+  println(between(Point2D(0, 0), Point2D(1, 1), Point2D(2, 2))) // false
+  println()
 
   /***
    *Method that raises a double to the power of two.
