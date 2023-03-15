@@ -57,20 +57,23 @@ object Task7 extends App {
   private def distance(p1: Point2D, p2: Point2D) : Double =
     sqrt(pow2(p1.x - p2.x) + pow2(p1.y - p2.y))
 
-  private enum Shape:
+  enum Shape:
     case Square(bottomLeft: Point2D, side: Double)
     case Circle(center: Point2D, radius: Double)
     case Rectangle(bottomLeft: Point2D, upRight: Point2D)
 
-  private def perimeter(shape: Shape) : Double = shape match
-    case Shape.Square(_, s) => s * 4
-    case Shape.Circle(_, r) => 2 * r * Pi
-    case Shape.Rectangle(p1, p2) => 2 * (p2.x - p1.x) + 2 * (p2.y - p1.y)
+  object Shape:
+    def perimeter(shape: Shape) : Double = shape match
+      case Square(_, s) => s * 4
+      case Circle(_, r) => 2 * r * Pi
+      case Rectangle(p1, p2) => 2 * (p2.x - p1.x) + 2 * (p2.y - p1.y)
 
-  private def contatins(shape: Shape, point: Point2D) : Boolean = (shape, point) match
-    case (Shape.Square(p, s), point) => between(point, p, Point2D(p.x + s, p.y + s))
-    case (Shape.Circle(c, r), point) => distance(c, point) <= r
-    case (Shape.Rectangle(p1, p2), point) => between(point, p1, p2)
+    def contatins(shape: Shape, point: Point2D) : Boolean = (shape, point) match
+      case (Square(p, s), point) => between(point, p, Point2D(p.x + s, p.y + s))
+      case (Circle(c, r), point) => distance(c, point) <= r
+      case (Rectangle(p1, p2), point) => between(point, p1, p2)
+
+  import Shape.*
 
   private val square = Shape.Square(Point2D(0,0), 2)
   println(perimeter(square))  // 8
