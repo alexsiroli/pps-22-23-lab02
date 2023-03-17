@@ -113,10 +113,11 @@ object Lab02 extends App {
 
   assertEquals(9)(composeByDef(_ - 1, _ * 2)(5))
 
-  def genericCompose[X](f: X => X, g: X => X): X => X = x => f(g(x))
+  def genericCompose[X, Y, Z](f: Y => Z, g: X => Y): X => Z = x => f(g(x))
 
-  val f: Double => Double = d => d / 2
-  assertEquals(0.25)(genericCompose(f, f)(1))
+  val g: Int => Double = i => i /  2.0
+  val f: Double => String = d => String.valueOf(d)
+  assertEquals(String.valueOf(0.5))(genericCompose(f, g)(1))
   newLine()
 
 
@@ -125,9 +126,8 @@ object Lab02 extends App {
 
   @tailrec
   private def gcd(a: Int, b: Int): Int = a match
-    case _ if a < b => gcd(b, a)
     case _ if b == 0 => a
-    case _ => gcd(b, a % b)
+    case _ => gcd(min(a, b), max(a, b) % min(a, b))
 
   assertEquals(4)(gcd(12, 8))
   assertEquals(7)(gcd(14, 7))
